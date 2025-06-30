@@ -72,7 +72,7 @@ nav ul li a:hover {
     background: red;
     border-radius: 50%;
     padding: 6px 8px;
-    content: attr(value);
+    content: attr(value); 
     position: relative;
     left: -10px;
     top: -20px;
