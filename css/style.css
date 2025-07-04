@@ -266,3 +266,11 @@ footer {
 
     }
 }
+#subtotal{
+    display: none;
+    font-family: "Oswald", sans-serif;
+   color: #e74c3c;
+   font-weight: bold;
+   font-size: 1rem;
+    padding: 0px 5px;
+}

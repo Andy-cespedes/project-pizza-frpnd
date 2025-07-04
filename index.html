@@ -41,6 +41,9 @@
     <div class="main-content">
         <h2 class="animate__animated animate__rubberBand">Nuestras Pizzas</h2>
         <div id="cart">
+             <div id="subtotal">
+        <p>Total: $<span id="total-amount">0</span></p>
+      </div>
             <i class="fa badge" id="badge" value="0"><i class="fa-solid fa-cart-shopping fa-xl"></i></i>
         </div>
         <ul class="gallery">
@@ -53,7 +56,7 @@
                             <time>23/06/2024</time>
                         </figcaption>
                     </figure>
-                    <button class="button" value="1" data-price="12700">AÑADIR AL CARRITO
+                    <button class="button" value="1" data-price="12500">AÑADIR AL CARRITO
                         <i class="fa-solid fa-cart-shopping fa-lg"></i>
                     </button>
                 </div>
@@ -193,7 +196,12 @@
             let price = parseFloat(this.getAttribute("data-price"));
             totalPrice = totalPrice + price;
             console.log("Total : " + totalPrice);
+
+             document.getElementById("subtotal").style.display="block";
+              // Total Price
+   document.getElementById("total-amount").textContent=totalPrice;
         }
+
 
         
     </script>
