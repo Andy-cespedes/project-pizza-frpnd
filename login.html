@@ -16,7 +16,7 @@
 
   <body>
     <div class="d-flex align-items-center justify-content-center vh-100">
-      <form class="form-signin" accept-charset="utf-8" method="POST" action="">
+      <form class="form-signin" accept-charset="utf-8" method="POST" action="login.php">
         <h2 class="text-center" class="form-signin-heading">USUARIO</h2>
 
         <input
@@ -61,7 +61,7 @@
                 errorMessages.innerHTML=message;
             }
           btn.addEventListener('click', (e) => {
-            e.preventDefault();
+            //e.preventDefault();
              const passValue = document.getElementById("password").value;
             const userValue = document.getElementById("username").value;
             //data es un objeto
