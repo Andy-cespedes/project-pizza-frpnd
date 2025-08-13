@@ -4,42 +4,48 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <title>Welcome</title>
 </head>
 
 <body>
-
     <?php
-    // Acá va el codigo PHP
 
-    define("USER_REAL", "Maria");
-    define("PASS_REAL", "maria123456");
-
-    //username
+    include_once("config_login.php");
 
     $usr = $_POST['username'];
-
-    //echo "<br>";
-
-    //password
-
     $pass = $_POST['password'];
+    $hash_pass = hash('sha256', $pass);
 
-    if ($usr == USER_REAL && $pass == PASS_REAL) {
-        echo "<div class='flex flex-col justify-center items-center h-screen'>";
-        echo "<h1 class='font-[Raleway] font-extrabold text-3xl'> ¡¡ Bienvenida/o " . USER_REAL .  "!! </h1>";
-        echo "<h1 class='font-[Raleway]'>" . date('d-m-Y') . " </h1>";
-        echo "</div>";
-    } else {
-        echo "<div class='flex flex-col justify-center items-center h-screen'";
-        echo "<h1  class='font-[Raleway]'> Los datos ingresados son incorrectos. </h1>";
-        echo "</div>";
+    try {
+        $pdo = new PDO("mysql:host=" . SERVER_NAME . ";dbname=" . DATABASE_NAME, USER_NAME, PASSWORD);
+        // set the PDO error mode to exception
+        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        echo "Connected successfully";
+    } catch (PDOException $e) {
+        echo "Connection failed: " . $e->getMessage();
+    } //Check if username exists
+
+    $sql = "select * from users where (username=? or email=?) and password=?";
+    // Use de sentencias prepared
+
+    //select * from users where (username='maria' or email='maria@bigdata.com') and password=SHA2('maria123456', 256);
+
+    //uso de poo-programacion orientada a objeto nombre_objeto->propiedad/metodo
+
+    $stmt = $pdo->prepare($sql);
+
+    $stmt->execute([$usr, $usr, $hash_pass]);
+    $row=$stmt->fetch(PDO::FETCH_ASSOC);
+
+    if(!$row){
+    //NO INGRESA
+    echo "Datos ingresados no son validos";
+
     }
-
+    else{
+//ingresado
+echo "Bienvenido ";
+    }
 
     ?>
 </body>
