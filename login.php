@@ -35,16 +35,19 @@
     $stmt = $pdo->prepare($sql);
 
     $stmt->execute([$usr, $usr, $hash_pass]);
-    $row=$stmt->fetch(PDO::FETCH_ASSOC);
+    $row = $stmt->fetch(PDO::FETCH_ASSOC);
 
-    if(!$row){
-    //NO INGRESA
-    echo "Datos ingresados no son validos";
-
-    }
-    else{
-//ingresado
-echo "Bienvenido ";
+    if (!$row) {
+        //NO INGRESA
+        echo "Datos ingresados no son validos";
+    } else {
+        //ingresado
+        session_start();
+        date_default_timezone_set('America/Argentina/Buenos_Aires');
+        $_SESSION['time'] = date('H:i:s');
+        $_SESSION['username'] = $usr;
+        $_SESSION['logueado'] = true;
+        header("location:welcome.php");
     }
 
     ?>
