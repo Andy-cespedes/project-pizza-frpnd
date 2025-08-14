@@ -25,7 +25,8 @@
         echo "Connection failed: " . $e->getMessage();
     } //Check if username exists
 
-    $sql = "select * from users where (username=? or email=?) and password=?";
+    $sql = "select * from users where (username=? or email=?) and password=?" and active='SI';
+
     // Use de sentencias prepared
 
     //select * from users where (username='maria' or email='maria@bigdata.com') and password=SHA2('maria123456', 256);
