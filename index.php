@@ -47,92 +47,36 @@
       </div>
             <i class="fa badge" id="badge" value="0"><i class="fa-solid fa-cart-shopping fa-xl"></i></i>
         </div>
+        <?php
+
+                    include_once("config_products.php");
+                    include_once("db.class.php");
+                    $link = new Db();
+                    $sql ="SELECT products.id_product, products.image, products.price, products.product_name, products.start_date, categories.category_name FROM products 
+                    INNER JOIN categories ON products.id_category = categories.id_category";
+                    $stmt=$link->run($sql);
+                    $data=$stmt->fetchAll();
+                    //recuperar un producto y llevarlo al li(ul)
+                    foreach($data as $row){
+                ?>
         <ul class="gallery">
             <li>
                 <div class="box">
-                    <figure><img src="img/fugazzeta_cleanup.png" alt="fugazzeta" class="img-pizzas">
+                    <figure><img src="<?php echo $row['image']  ?>" class="img-pizzas">
                         <figcaption>
-                            <h3>Fugazzeta</h3>
-                            <p>$ 12500</p>
-                            <time>23/06/2024</time>
+                            <h3><?php echo $row['product_name'] ?></h3>
+                            <p><?php echo $row['price'] ?></p>
+                            <time><?php echo $row['price'] ?></time>
                         </figcaption>
-                    </figure>
-                    <button class="button" value="1" data-price="12500">AÑADIR AL CARRITO
-                        <i class="fa-solid fa-cart-shopping fa-lg"></i>
-                    </button>
-                </div>
-            </li>
-            <li>
-                <div class="box">
-                    <figure><img src="img/pizza-4-quesos.png" alt="pizza 4 quesos" class="img-pizzas">
-                        <figcaption>
-                            <h3>Cuatro quesos</h3>
-                            <p>$ 12500</p>
-                            <time>23/06/2024</time>
-                        </figcaption>
-                    </figure>
-                    <button class="button" value="2" data-price="12500">AÑADIR AL CARRITO <i
-                            class="fa-solid fa-cart-shopping fa-lg"></i></button>
-                </div>
-            </li>
-            <li>
-                <div class="box">
-                    <figure><img src="img/pizza-de-albahaca.png" alt="pizza de albahaca" class="img-pizzas">
-                        <figcaption>
-                            <h3>Albahaca</h3>
-                            <p>$ 12500</p>
-                            <time>23/06/2024</time>
-                        </figcaption>
-                    </figure>
-                    <button class="button" value="3" data-price="12500">AÑADIR AL CARRITO <i
-                            class="fa-solid fa-cart-shopping fa-lg"></i></button>
-                </div>
-            </li>
-            <li>
-                <div class="box">
-                    <figure><img src="img/pizza-muzzarella.png" alt="pizza de muzzarella" class="img-pizzas">
-                        <figcaption>
-                            <h3>Muzzarella</h3>
-                            <p>$ 12400</p>
-                            <time>23/06/2024</time>
-                        </figcaption>
-                    </figure>
-                    <button class="button" value="4" data-price="12500">AÑADIR AL CARRITO <i
-                            class="fa-solid fa-cart-shopping fa-lg"></i></button>
-                </div>
-            </li>
-            <li>
-                <div class="box">
-                    <figure><img src="img/pizza-napolitana.png" alt="pizza napolitana" class="img-pizzas">
-                        <figcaption>
-                            <h3>Napolitana</h3>
-                            <p>$ 12400</p>
-                            <time>23/06/2024</time>
-                        </figcaption>
-                    </figure>
-                    <button class="button" value="5"data-price="12500" >AÑADIR AL CARRITO <i
-                            class="fa-solid fa-cart-shopping fa-lg"></i></button>
-                </div>
-            </li>
-            <li>
-                <div class="box">
-                    <figure><img src="img/pizza-rucula-y-jamon-crudo.png" alt="pizza rucula y jamon" class="img-pizzas">
-                        <figcaption>
-                            <h3>Rucula y jamon crudo</h3>
-                            <p>$ 12500</p>
-                            <time>23/06/2024</time>
-                        </figcaption>
-                    </figure>
-                    <button class="button" value="6" data-price="12500" >AÑADIR AL CARRITO <i
-                            class="fa-solid fa-cart-shopping fa-lg"></i></button>
-                </div>
-            </li>
-        </ul>
-    </div>
-
-    <footer>
-        <div class="footer-content">
-            <div class="footer-nav">
+                        </figure>
+                         <button class="button" value=<?php echo $row['id_product']  ?>" data-price="<?php echo $row['price']  ?>">Añadir al carrito
+                            <i class="fa-solid fa-cart-shopping fa-lg"></i>
+                        </button>
+                    </div>
+                    </li>
+                <?php
+                    }
+                ?>
                 <ul>
                     <li><a href="#">Home</a></li>
                     <li><a href="#">Nosotros</a></li>
