@@ -47,26 +47,27 @@
       </div>
             <i class="fa badge" id="badge" value="0"><i class="fa-solid fa-cart-shopping fa-xl"></i></i>
         </div>
+         <ul class="gallery">
         <?php
 
                     include_once("config_products.php");
                     include_once("db.class.php");
                     $link = new Db();
-                    $sql ="SELECT products.id_product, products.image, products.price, products.product_name, products.start_date, categories.category_name FROM products 
-                    INNER JOIN categories ON products.id_category = categories.id_category";
+                    $sql ="select p.id_product,c.category_name,p.image,p.product_name,p.price, date_format(p.start_date,'%d/%m/%Y') as date from products p inner join categories c 
+on p.id_category=c.id_category order by c.category_name,p.price";
                     $stmt=$link->run($sql);
                     $data=$stmt->fetchAll();
                     //recuperar un producto y llevarlo al li(ul)
                     foreach($data as $row){
                 ?>
-        <ul class="gallery">
+       
             <li>
                 <div class="box">
                     <figure><img src="<?php echo $row['image']  ?>" class="img-pizzas">
                         <figcaption>
                             <h3><?php echo $row['product_name'] ?></h3>
                             <p><?php echo $row['price'] ?></p>
-                            <time><?php echo $row['price'] ?></time>
+                            <time><?php echo $row['date'] ?></time>
                         </figcaption>
                         </figure>
                          <button class="button" value=<?php echo $row['id_product']  ?>" data-price="<?php echo $row['price']  ?>">Añadir al carrito
@@ -75,8 +76,13 @@
                     </div>
                     </li>
                 <?php
-                    }
-                ?>
+                    }  ?>
+                    </ul>
+                    </div>
+
+                <footer>
+        <div class="footer-content">
+            <div class="footer-nav">
                 <ul>
                     <li><a href="#">Home</a></li>
                     <li><a href="#">Nosotros</a></li>
