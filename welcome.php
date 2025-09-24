@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>Welcome</title>
@@ -13,29 +14,8 @@
     <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
     <script src="https://cdn.datatables.net/2.3.4/js/dataTables.js"></script>
 
-
-   <script>
-       function deleteProduct(cod){
-    
-    bootbox.confirm("desea ud. eliminar el id" + cod, function(result) {
-        if (result){
-            window.location = "delete.php?q=" + cod;    
-        }
-    });
- 
-}
-
-
-       function updateProduct(cod){
-
-      /*bootbox.confirm("Desea ud. actualizar realmente el id " + cod, function(result) {
-        if (result) */ {
-            window.location = "edit.php?q=" + cod;  /* < ------- nueva plantilla para edit.php  < ------*/ 
-       /*  }  */
-    };  /*  )  */
-}
-</script>
 </head>
+
 <body>
     <nav class="navtop">
         <div>
@@ -57,7 +37,7 @@
             echo "<br>";
             echo "<a href='insert_products.php'>INSERTAR PRODUCTOS</a>";
             echo "<br>";
-            $table = " <div class='table-responsive'><table class='table table-bordered table-striped' id='myTable'>
+            $table = " <div class='table-responsive'><table class='table table-bordered table-striped' id='ourTable'>
             <thead class='thead-dark'>
                 <tr>
                     <th>Id</th>
@@ -100,7 +80,7 @@
                     </td>
                     <td>
                         <a href="#" onclick="updateProduct(<?php echo $row['id_product'] ?>)"> Actualizar Producto</a>
-                    </td>                 //* < -- a href="edit.php?q="> actualizar producto</ <-- *//
+                    </td>
                 </tr>
         <?php
             } // foreach
@@ -114,19 +94,33 @@
 
     </div>
     <script>
-        let table = new DataTable('#myTable', {
+        let table = new DataTable('#ourTable', {
             info: false,
             ordering: true,
             paging: false,
             // Descargar el archivo es-MX.json desde la pagina: https://datatables.net/plug-ins/i18n/Spanish_Argentina.html
             language: {
                 url: 'https://cdn.datatables.net/plug-ins/2.3.4/i18n/es-AR.json',
-            
             },
         });
+
+        function deleteProduct(cod) {
+
+            bootbox.confirm("Desea ud. eliminar realmente el id " + cod, function(result) {
+                if (result) {
+                    window.location = "delete.php?q=" + cod;
+                }
+            });
+
+        }
+
+        function updateProduct(cod) {
+
+            window.location = "edit.php?q=" + cod;
+
+        }
     </script>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/js/bootstrap.min.js" integrity="sha512-ykZ1QQr0Jy/4ZkvKuqWn4iF3lqPZyij9iRv6sGqLRdTPkY69YX6+7wvVGmsdBbiIfN/8OdsI7HABjvEok6ZopQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-6.0.0/bootbox.min.js" integrity="sha512-oVbWSv2O4y1UzvExJMHaHcaib4wsBMS5tEP3/YkMP6GmkwRJAa79Jwsv+Y/w7w2Vb/98/Xhvck10LyJweB8Jsw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/6.0.4/bootbox.min.js"> </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/6.0.4/bootbox.min.js" integrity="sha512-l9O8NTlhknUJDJQlUVeavXJrtGEEYma4O29lRjEV7mO6DxXVvX9SWEIfnAlpnf+2T8LHTfsVuzttCDEMpIyaew==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 </body>

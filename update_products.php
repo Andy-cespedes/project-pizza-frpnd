@@ -8,8 +8,8 @@ if ($_SESSION['logueado']) {
     $name = $_POST['nombre'];
     $price = $_POST['precio'];
     $category = $_POST['categoria'];
-    $sql="update products set product_name='$name',price='$price',category_name='$category' where id_product=".$id;
-    $stmt=$link->run($sql);
+    $fechaIng = $_POST['fecha'];
+    $sql = "update products set product_name='$name',price='$price',id_category='$category',start_date='$fechaIng' where id_product=" . $id;
+    $stmt = $link->run($sql);
     header('Location:welcome.php');
 }
-?>
