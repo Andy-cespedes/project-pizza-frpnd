@@ -1,0 +1,19 @@
+1 escribir un login de htl 
+
+respuesta
+<form class="form-signin" accept-charset="utf-8" method="POST" action="login.php">
+        <h2 class="text-center form-signin-heading">USUARIO</h2>
+                <input type="text" class="form-control" id="username" name="username" placeholder="Usuario o email" required autofocus />
+                <br />
+                <input type="password" class="form-control" id="password" name="password" placeholder="Contraseña" required>
+                <br />
+                <div id="errorMessages"></div>
+                <br />
+<!-- BOTON DE LOGIN -->
+                     <div class="text-center">
+        <button class="btn btn-primary btn-lg btn-block" id="login" type="submit">
+          Login
+        </button>
+
+    </form>
+    
