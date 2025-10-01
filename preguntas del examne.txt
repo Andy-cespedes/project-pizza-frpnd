@@ -16,4 +16,6 @@ respuesta
         </button>
 
     </form>
+
+    como se manejan execciones en php
     
